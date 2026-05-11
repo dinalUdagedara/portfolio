@@ -62,7 +62,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `experience.tsx` uses timeline styling and mono dates.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 
