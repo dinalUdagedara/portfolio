@@ -5,7 +5,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-border/60 px-4 py-10">
-      <div className="mx-auto flex max-w-3xl flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {year} {site.name}
         </p>

@@ -22,7 +22,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `components/portfolio/section.tsx` exists and Projects, Experience, Contact import it; inner content uses `max-w-6xl`.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 
