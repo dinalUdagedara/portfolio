@@ -92,7 +92,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** A small client-safe component or layout wrapper mounts the overlay above page content.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 
