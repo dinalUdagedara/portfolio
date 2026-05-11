@@ -14,12 +14,37 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${site.name} — Portfolio`,
     template: `%s — ${site.name}`,
   },
   description: site.tagline,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: site.name,
+    title: `${site.name} — Portfolio`,
+    description: site.tagline,
+    images: [
+      {
+        url: site.portraitImage,
+        width: 1200,
+        height: 1600,
+        alt: site.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Portfolio`,
+    description: site.tagline,
+    images: [site.portraitImage],
+  },
 }
 
 export default function RootLayout({

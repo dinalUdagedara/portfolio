@@ -102,7 +102,27 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `app/layout.tsx` exports full social metadata; `.env.example` documents `NEXT_PUBLIC_SITE_URL`.
 
-- [ ] Complete
+- [x] Complete
+
+---
+
+## Commit log (reference)
+
+Each row matches one git commit on `main` (oldest → newest for this upgrade).
+
+| Task | Commit subject (short) |
+|------|-------------------------|
+| Plan | `docs: add portfolio visual upgrade task list` |
+| 1 | `feat(portfolio): warm primary and ring tokens` |
+| 2 | `feat(portfolio): shared section shell and max width` |
+| 3 | `feat(portfolio): alternating section surface bands` |
+| 4 | `feat(portfolio): hero hook line and typographic hierarchy` |
+| 5 | `feat(portfolio): editorial project cards with gradient tiles` |
+| 6 | `feat(portfolio): experience timeline rail and bullets` |
+| 7 | `feat(portfolio): header link motion and footer band` |
+| 8 | `feat(portfolio): staggered fade-up for list sections` |
+| 9 | `feat(portfolio): subtle film grain overlay` |
+| 10 | `feat(seo): open graph metadata and site URL env` |
 
 ---
 
