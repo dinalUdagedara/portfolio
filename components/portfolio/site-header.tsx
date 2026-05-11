@@ -20,17 +20,17 @@ export function SiteHeader({ className }: { className?: string }) {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">
         <Link
           href="#top"
-          className="min-w-0 truncate text-sm font-medium tracking-tight text-foreground"
+          className="group min-w-0 truncate text-sm font-medium tracking-tight text-foreground transition-colors hover:text-primary"
         >
           {site.name.split(" ")[0]}
-          <span className="text-muted-foreground">.dev</span>
+          <span className="text-muted-foreground transition-colors group-hover:text-primary/75">.dev</span>
         </Link>
         <nav className="flex items-center gap-1 text-sm">
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="relative rounded-full px-3 py-1.5 text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-200 hover:bg-muted/60 hover:text-foreground hover:after:scale-x-100"
             >
               {item.label}
             </Link>

@@ -72,7 +72,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `site-header.tsx` and `site-footer.tsx` updated.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 
@@ -85,6 +85,10 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 - [ ] Complete
 
 ---
+
+
+
+Make mobile responsive
 
 ## Task 9 — Film grain overlay
 
