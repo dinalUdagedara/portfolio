@@ -12,7 +12,7 @@ export function Hero() {
     <section
       id="top"
       className={cn(
-        "relative scroll-mt-20 overflow-hidden",
+        "relative scroll-mt-20 overflow-x-clip",
         "border-b border-border/40",
         "bg-gradient-to-b from-muted/30 via-background to-background",
         "dark:from-muted/15 dark:via-background dark:to-background"
@@ -24,29 +24,31 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-1/4 h-72 w-72 rounded-full bg-primary/5 blur-3xl dark:bg-primary/10"
+        className="pointer-events-none absolute -right-16 top-1/4 h-56 w-56 rounded-full bg-primary/5 blur-3xl sm:-right-24 sm:h-72 sm:w-72 dark:bg-primary/10"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl dark:bg-amber-400/15"
+        className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl sm:-left-32 sm:h-80 sm:w-80 dark:bg-amber-400/15"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:py-20 lg:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <div className="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
+      <div
+        className="relative mx-auto max-w-6xl py-12 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:py-16 lg:py-24"
+      >
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-10">
+          <div className="order-2 lg:order-1 lg:col-span-5">
+            <div className="relative mx-auto w-full max-w-[min(100%,20rem)] sm:max-w-sm lg:mx-0 lg:max-w-none">
               <div
                 aria-hidden
-                className="absolute -inset-6 rounded-[2.25rem] bg-gradient-to-br from-amber-400/25 via-orange-300/10 to-transparent opacity-90 blur-2xl dark:from-amber-400/20 dark:via-orange-500/10 dark:to-transparent"
+                className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-amber-400/25 via-orange-300/10 to-transparent opacity-90 blur-2xl sm:-inset-6 sm:rounded-[2.25rem] dark:from-amber-400/20 dark:via-orange-500/10 dark:to-transparent"
               />
               <div
                 aria-hidden
                 className="absolute inset-[10%] -z-10 rounded-[2rem] bg-gradient-to-t from-background via-transparent to-transparent dark:from-background"
               />
-              <figure className="relative">
+              <figure className="relative mx-auto max-w-sm lg:mx-0 lg:max-w-none">
                 <div
                   className={cn(
-                    "relative aspect-[3/4] overflow-hidden rounded-[2rem]",
+                    "relative aspect-[3/4] max-h-[min(68vh,26rem)] w-full overflow-hidden rounded-2xl sm:max-h-none sm:rounded-[2rem]",
                     "shadow-[0_24px_80px_-12px_rgba(0,0,0,0.35)]",
                     "ring-1 ring-black/5 dark:shadow-[0_28px_90px_-16px_rgba(0,0,0,0.65)] dark:ring-white/10"
                   )}
@@ -56,7 +58,7 @@ export function Hero() {
                     alt={portraitAlt}
                     fill
                     priority
-                    sizes="(min-width: 1024px) 38vw, 85vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 38vw"
                     className="object-cover object-[center_18%] saturate-[1.02]"
                   />
                   <div
@@ -68,24 +70,24 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="lg:col-span-7">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-primary/90">
+          <div className="order-1 min-w-0 lg:order-2 lg:col-span-7">
+            <p className="font-mono text-[10px] font-medium uppercase leading-relaxed tracking-[0.18em] text-primary/90 sm:text-[11px] sm:tracking-[0.22em]">
               {site.role}
             </p>
-            <p className="mt-4 max-w-xl text-pretty text-lg font-medium leading-snug tracking-tight text-foreground sm:text-xl">
+            <p className="mt-3 max-w-xl text-pretty text-base font-medium leading-snug tracking-tight text-foreground sm:mt-4 sm:text-lg md:text-xl">
               {site.hook}
             </p>
-            <h1 className="mt-5 text-balance text-3xl font-semibold tracking-[-0.02em] sm:text-4xl lg:text-5xl lg:leading-[1.06]">
+            <h1 className="mt-4 text-pretty text-3xl font-semibold tracking-[-0.02em] sm:mt-5 sm:text-4xl lg:text-5xl lg:leading-[1.06]">
               {site.name}
             </h1>
-            <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base md:text-lg">
               {site.tagline}
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg">
+            <div className="mt-8 flex w-full max-w-xl touch-manipulation flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg" className="h-11 w-full min-h-11 sm:h-10 sm:w-auto sm:min-h-10">
                 <Link href="#work">View work</Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="h-11 w-full min-h-11 sm:h-10 sm:w-auto sm:min-h-10">
                 <Link href={`mailto:${site.email}`}>Email me</Link>
               </Button>
             </div>

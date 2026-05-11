@@ -26,7 +26,8 @@ export function PortfolioSection({
     <section
       id={id}
       className={cn(
-        "scroll-mt-20 border-t border-border/50 px-4 py-16 sm:py-20 md:py-24",
+        "scroll-mt-20 border-t border-border/50 py-14 sm:py-20 md:py-24",
+        "pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]",
         bandClass[band],
         className
       )}
@@ -59,7 +60,9 @@ export function SectionTitle({ kicker, title, description, className }: SectionT
         <div className="min-w-0">
           <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">{title}</h2>
           {description ? (
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+            <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
+              {description}
+            </p>
           ) : null}
         </div>
       </div>

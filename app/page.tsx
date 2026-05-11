@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/portfolio/site-header"
 
 export default function Page() {
   return (
-    <div className="min-h-svh">
+    <div className="min-h-svh min-w-0 overflow-x-clip pb-[max(0.5rem,env(safe-area-inset-bottom))]">
       <SiteHeader />
       <main>
         <Hero />

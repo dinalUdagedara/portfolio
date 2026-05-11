@@ -21,7 +21,7 @@ export function Projects() {
         title="Selected work"
         description="Replace the placeholders in lib/site.ts with your real projects, links, and tags."
       />
-      <ul className="mt-12 flex flex-col gap-5">
+      <ul className="mt-10 flex flex-col gap-4 sm:mt-12 sm:gap-5">
         {projects.map((project, index) => (
           <li
             key={project.title}
@@ -30,18 +30,20 @@ export function Projects() {
           >
             <Link
               href={project.href}
-              className="group grid gap-0 overflow-hidden rounded-2xl border border-border bg-card transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none motion-reduce:transition-none sm:grid-cols-12"
+              className="group grid min-h-[3rem] touch-manipulation gap-0 overflow-hidden rounded-2xl border border-border bg-card transition-[transform,box-shadow] duration-300 ease-out active:scale-[0.99] hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none motion-reduce:transition-none sm:grid-cols-12 sm:active:scale-100"
             >
-              <div className="relative flex aspect-[16/10] min-h-[9rem] items-center justify-center bg-gradient-to-br from-primary/15 via-muted/50 to-muted sm:col-span-4 sm:aspect-auto sm:min-h-[12rem]">
+              <div className="relative flex aspect-[16/10] min-h-[8.5rem] items-center justify-center bg-gradient-to-br from-primary/15 via-muted/50 to-muted sm:col-span-4 sm:aspect-auto sm:min-h-[12rem]">
                 <span className="select-none text-3xl font-semibold tracking-tight text-foreground/20 transition-colors group-hover:text-foreground/35 sm:text-4xl">
                   {initials(project.title)}
                 </span>
               </div>
-              <div className="flex flex-col justify-center border-t border-border/60 p-5 sm:col-span-8 sm:border-l sm:border-t-0 sm:px-8 sm:py-6">
+              <div className="flex min-w-0 flex-col justify-center border-t border-border/60 p-4 sm:col-span-8 sm:border-l sm:border-t-0 sm:p-5 sm:px-8 sm:py-6">
                 <h3 className="text-base font-semibold tracking-tight transition-colors group-hover:text-primary">
                   {project.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                <p className="mt-2 break-words text-sm leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
