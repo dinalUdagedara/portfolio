@@ -52,7 +52,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `projects.tsx` implements the new card layout without changing `Project` type shape.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 
