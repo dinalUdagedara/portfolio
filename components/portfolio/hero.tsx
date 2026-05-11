@@ -69,13 +69,16 @@ export function Hero() {
           </div>
 
           <div className="lg:col-span-7">
-            <p className="text-sm font-medium tracking-wide text-muted-foreground">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-primary/90">
               {site.role}
             </p>
-            <h1 className="mt-3 text-balance text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl lg:leading-[1.08]">
+            <p className="mt-4 max-w-xl text-pretty text-lg font-medium leading-snug tracking-tight text-foreground sm:text-xl">
+              {site.hook}
+            </p>
+            <h1 className="mt-5 text-balance text-3xl font-semibold tracking-[-0.02em] sm:text-4xl lg:text-5xl lg:leading-[1.06]">
               {site.name}
             </h1>
-            <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
               {site.tagline}
             </p>
             <div className="mt-9 flex flex-wrap gap-3">

@@ -42,7 +42,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `site.hook` exists and `hero.tsx` renders hook → name → tagline → CTAs.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 

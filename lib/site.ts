@@ -1,6 +1,8 @@
 export const site = {
   name: "Dinal Udagedara",
   role: "Software engineer",
+  /** One scannable line: outcome or niche (shown above the name in the hero). */
+  hook: "I ship web products that stay fast, accessible, and easy to evolve.",
   tagline:
     "I build reliable web products with clear UX, solid TypeScript, and performance in mind.",
   email: "you@example.com",
