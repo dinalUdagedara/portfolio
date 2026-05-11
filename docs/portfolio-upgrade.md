@@ -12,7 +12,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `app/globals.css` reflects the new token values; no component API changes required.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 
