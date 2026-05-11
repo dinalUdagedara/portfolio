@@ -10,7 +10,7 @@ export const site = {
   githubUsername: "dinalUdagedara",
   links: {
     github: "https://github.com/dinalUdagedara",
-    linkedin: "https://www.linkedin.com/in/",
+    linkedin: "https://www.linkedin.com/in/dinaludagedara/",
   },
   /** Static file under `public/assets/images/`. */
   portraitImage: "/assets/images/portrait.jpeg",
