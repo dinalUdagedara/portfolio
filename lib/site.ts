@@ -6,8 +6,10 @@ export const site = {
   tagline:
     "I build reliable web products with clear UX, solid TypeScript, and performance in mind.",
   email: "you@example.com",
+  /** Used for the GitHub API section (`lib/github.ts`). Must match your handle. */
+  githubUsername: "dinalUdagedara",
   links: {
-    github: "https://github.com/",
+    github: "https://github.com/dinalUdagedara",
     linkedin: "https://www.linkedin.com/in/",
   },
   /** Static file under `public/assets/images/`. */
