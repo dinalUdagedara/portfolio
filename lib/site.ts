@@ -14,6 +14,19 @@ export const site = {
   },
   /** Static file under `public/assets/images/`. */
   portraitImage: "/assets/images/portrait.jpeg",
+  /** Optional X/Twitter handle for `twitter.creator` (with or without leading @). */
+  twitterHandle: "",
+  /** Used for `<meta name="keywords">` and similar. */
+  keywords: [
+    "Dinal Udagedara",
+    "software engineer",
+    "portfolio",
+    "TypeScript",
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "web development",
+  ],
 } as const
 
 export type Project = {
