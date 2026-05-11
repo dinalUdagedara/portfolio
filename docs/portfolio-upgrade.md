@@ -82,13 +82,9 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** `globals.css` defines the animation; section lists apply staggered `animation-delay` via inline style from index.
 
-- [ ] Complete
+- [x] Complete
 
 ---
-
-
-
-Make mobile responsive
 
 ## Task 9 — Film grain overlay
 

@@ -22,8 +22,12 @@ export function Projects() {
         description="Replace the placeholders in lib/site.ts with your real projects, links, and tags."
       />
       <ul className="mt-12 flex flex-col gap-5">
-        {projects.map((project) => (
-          <li key={project.title}>
+        {projects.map((project, index) => (
+          <li
+            key={project.title}
+            className="portfolio-fade-up"
+            style={{ animationDelay: `${index * 85}ms` }}
+          >
             <Link
               href={project.href}
               className="group grid gap-0 overflow-hidden rounded-2xl border border-border bg-card transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none motion-reduce:transition-none sm:grid-cols-12"

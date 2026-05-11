@@ -10,8 +10,12 @@ export function Experience() {
         description="Keep each bullet crisp: action + scope + outcome."
       />
       <ol className="relative mt-12 space-y-12 border-l border-border/70 pl-8 sm:pl-10">
-        {experience.map((item) => (
-          <li key={`${item.company}-${item.period}`} className="relative">
+        {experience.map((item, index) => (
+          <li
+            key={`${item.company}-${item.period}`}
+            className="relative portfolio-fade-up"
+            style={{ animationDelay: `${index * 90}ms` }}
+          >
             <span
               className="absolute -left-px top-1.5 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-background bg-primary shadow-sm ring-1 ring-primary/25"
               aria-hidden
