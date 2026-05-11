@@ -3,7 +3,7 @@ import { experience } from "@/lib/site"
 
 export function Experience() {
   return (
-    <PortfolioSection id="experience">
+    <PortfolioSection id="experience" band="default">
       <SectionTitle
         kicker="History"
         title="Experience"

@@ -32,7 +32,7 @@ This document tracks a **quiet luxury** polish pass: warm accent, editorial typo
 
 **Done when:** Work / Experience / Contact each set an explicit `band` prop for a deliberate pattern.
 
-- [ ] Complete
+- [x] Complete
 
 ---
 

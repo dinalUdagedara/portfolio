@@ -6,7 +6,7 @@ import { site } from "@/lib/site"
 
 export function Contact() {
   return (
-    <PortfolioSection id="contact">
+    <PortfolioSection id="contact" band="muted">
       <SectionTitle
         kicker="Hello"
         title="Contact"

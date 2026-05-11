@@ -5,7 +5,7 @@ import { projects } from "@/lib/site"
 
 export function Projects() {
   return (
-    <PortfolioSection id="work">
+    <PortfolioSection id="work" band="muted">
       <SectionTitle
         kicker="Portfolio"
         title="Selected work"
