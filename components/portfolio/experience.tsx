@@ -22,8 +22,8 @@ export function Experience() {
             />
             <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
               <div className="min-w-0">
-                <h3 className="text-base font-semibold tracking-tight">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.company}</p>
+                <h3 className="text-base font-semibold tracking-tight ml-3">{item.title}</h3>
+                <p className="text-sm text-muted-foreground ml-3">{item.company}</p>
               </div>
               <p className="mt-1 shrink-0 font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-muted-foreground sm:mt-0 sm:text-[11px] sm:tracking-[0.14em]">
                 {item.period}
