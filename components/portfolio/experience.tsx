@@ -33,7 +33,7 @@ export function Experience() {
               {item.highlights.map((h) => (
                 <li
                   key={h}
-                  className="relative break-words pl-4 before:absolute before:left-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-primary/45"
+                  className="relative break-words pl-4 before:absolute before:left-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-primary/45 before:content-['']"
                 >
                   {h}
                 </li>
