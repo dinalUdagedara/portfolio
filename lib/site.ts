@@ -5,7 +5,7 @@ export const site = {
   hook: "I ship web products that stay fast, accessible, and easy to evolve.",
   tagline:
     "I build reliable web products with clear UX, solid TypeScript, and performance in mind.",
-  email: "you@example.com",
+  email: "dinal.bandara@gmail.com",
   /** Used for the GitHub API section (`lib/github.ts`). Must match your handle. */
   githubUsername: "dinalUdagedara",
   /** Used for the Writing section (`lib/medium.ts`). Without the leading @. */
@@ -13,6 +13,7 @@ export const site = {
   links: {
     github: "https://github.com/dinalUdagedara",
     linkedin: "https://www.linkedin.com/in/dinaludagedara/",
+    instagram: "https://www.instagram.com/dinal.udagedara",
   },
   /** Static file under `public/assets/images/`. */
   portraitImage: "/assets/images/portrait.jpeg",
