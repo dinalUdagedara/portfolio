@@ -1,18 +1,19 @@
 import Link from "next/link"
 
+import { ContributionGraphGrid } from "@/components/portfolio/contribution-graph-grid"
 import type { ContributionCalendar } from "@/lib/github"
+import { type GridDay, normalizeContributionWeeks } from "@/lib/contribution-grid"
 import { cn } from "@/lib/utils"
 
-const DAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-const VISIBLE_DAYS = ["", "Mon", "", "Wed", "", "Fri", ""]
 const CELL = "h-[11px] w-[11px] rounded-[3px] sm:h-3 sm:w-3"
-const GAP = "gap-[3px] sm:gap-1"
-const WEEK_W = "w-[14px] sm:w-4"
 
-function contributionLevels(weeks: ContributionCalendar["weeks"]): number[] {
-  const counts = weeks.flatMap((w) =>
-    w.contributionDays.map((d) => d.contributionCount).filter((n) => n > 0)
-  )
+function contributionLevels(weeks: GridDay[][]): number[] {
+  const counts = weeks
+    .flat()
+    .filter((d) => d.slot === "day")
+    .map((d) => d.contributionCount)
+    .filter((n) => n > 0)
+
   if (!counts.length) return [1, 4, 8, 14]
 
   const sorted = [...counts].sort((a, b) => a - b)
@@ -22,22 +23,15 @@ function contributionLevels(weeks: ContributionCalendar["weeks"]): number[] {
   return [1, Math.max(2, q(0.25)), Math.max(4, q(0.5)), Math.max(8, q(0.75))]
 }
 
-function cellClass(count: number, levels: number[]): string {
-  if (count === 0) return "bg-muted/80 dark:bg-muted/50"
-  if (count < levels[0]) return "bg-primary/30"
-  if (count < levels[1]) return "bg-primary/45"
-  if (count < levels[2]) return "bg-primary/65"
-  if (count < levels[3]) return "bg-primary/85"
+function cellClass(day: GridDay, levels: number[]): string {
+  if (day.slot === "padding") return "bg-transparent"
+  if (day.slot === "future") return "bg-primary/14 dark:bg-primary/20"
+  if (day.contributionCount === 0) return "bg-muted/80 dark:bg-muted/50"
+  if (day.contributionCount < levels[0]) return "bg-primary/30"
+  if (day.contributionCount < levels[1]) return "bg-primary/45"
+  if (day.contributionCount < levels[2]) return "bg-primary/65"
+  if (day.contributionCount < levels[3]) return "bg-primary/85"
   return "bg-primary"
-}
-
-function formatDate(date: string): string {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  })
 }
 
 export function ContributionGraphSkeleton({ embedded }: { embedded?: boolean }) {
@@ -68,18 +62,9 @@ export function ContributionGraph({
   profileUrl,
   embedded = false,
 }: ContributionGraphProps) {
-  const { totalContributions, weeks } = calendar
+  const { totalContributions, weeks: apiWeeks } = calendar
+  const weeks = normalizeContributionWeeks(apiWeeks)
   const levels = contributionLevels(weeks)
-
-  const monthLabels = new Map<number, string>()
-  weeks.forEach((week, i) => {
-    if (!week.contributionDays.length) return
-    const d = new Date(week.contributionDays[0].date)
-    const prev = i > 0 ? new Date(weeks[i - 1].contributionDays[0].date) : null
-    if (!prev || prev.getMonth() !== d.getMonth()) {
-      monthLabels.set(i, d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }))
-    }
-  })
 
   return (
     <section
@@ -116,64 +101,7 @@ export function ContributionGraph({
         ) : null}
       </div>
 
-      <div
-        className={cn(
-          "relative -mx-1 rounded-xl bg-muted/30 px-1 py-4 dark:bg-muted/15",
-          "sm:mx-0 sm:bg-transparent sm:px-0 sm:py-0"
-        )}
-      >
-        <div className="overflow-x-auto pb-1 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          <div className="mx-auto w-max">
-            <div className={cn("mb-1.5 flex", GAP)}>
-              <div className="mr-1.5 w-8 shrink-0 sm:mr-2 sm:w-9" />
-              {weeks.map((_, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    WEEK_W,
-                    "shrink-0 text-[10px] leading-none text-foreground/55 sm:text-[11px]"
-                  )}
-                >
-                  {monthLabels.get(i) ?? ""}
-                </div>
-              ))}
-            </div>
-
-            <div className={cn("flex", GAP)}>
-              <div className={cn("mr-1.5 flex w-8 shrink-0 flex-col sm:mr-2 sm:w-9", GAP)}>
-                {VISIBLE_DAYS.map((label, i) => (
-                  <div
-                    key={i}
-                    className={cn(
-                      CELL,
-                      "flex items-center justify-end text-[10px] leading-none text-foreground/55 sm:text-[11px]"
-                    )}
-                  >
-                    {label}
-                  </div>
-                ))}
-              </div>
-
-              {weeks.map((week, wi) => (
-                <div key={wi} className={cn("flex flex-col", GAP)}>
-                  {week.contributionDays.map((day, di) => (
-                    <div
-                      key={di}
-                      className={cn(
-                        CELL,
-                        "transition-[transform,opacity] hover:scale-110 hover:opacity-90 motion-reduce:transform-none",
-                        cellClass(day.contributionCount, levels)
-                      )}
-                      title={`${formatDate(day.date)}: ${day.contributionCount} contribution${day.contributionCount !== 1 ? "s" : ""}`}
-                      aria-label={`${DAY_LABELS[di]}, ${formatDate(day.date)}: ${day.contributionCount} contributions`}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <ContributionGraphGrid weeks={weeks} levels={levels} />
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground">
         <p className="max-w-md text-pretty leading-relaxed">
@@ -182,7 +110,14 @@ export function ContributionGraph({
         <div className="flex items-center gap-1.5">
           <span>Less</span>
           {[0, levels[0], levels[1], levels[2], levels[3]].map((n) => (
-            <div key={n} className={cn(CELL, cellClass(n, levels))} aria-hidden />
+            <div
+              key={n}
+              className={cn(
+                CELL,
+                cellClass({ date: "", contributionCount: n, slot: "day" }, levels)
+              )}
+              aria-hidden
+            />
           ))}
           <span>More</span>
         </div>
