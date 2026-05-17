@@ -86,14 +86,11 @@ export function ContributionGraph({
           <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
             Activity
           </p>
-          <p className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-            <span className="font-mono text-3xl font-semibold tabular-nums tracking-tight sm:text-4xl">
-              {totalContributions.toLocaleString()}
-            </span>
-            <span className="text-sm text-muted-foreground">
-              contributions
-              <br className="hidden sm:block" /> in the last year
-            </span>
+          <p className="mt-1 font-mono text-3xl font-semibold tabular-nums tracking-tight sm:text-4xl">
+            {totalContributions.toLocaleString()}
+          </p>
+          <p className="mt-0.5 text-sm text-muted-foreground">
+            contributions in the last year
           </p>
           {profileUrl ? (
             <Link
