@@ -8,6 +8,8 @@ export const site = {
   email: "you@example.com",
   /** Used for the GitHub API section (`lib/github.ts`). Must match your handle. */
   githubUsername: "dinalUdagedara",
+  /** Used for the Writing section (`lib/medium.ts`). Without the leading @. */
+  mediumUsername: "dinal.bandara",
   links: {
     github: "https://github.com/dinalUdagedara",
     linkedin: "https://www.linkedin.com/in/dinaludagedara/",

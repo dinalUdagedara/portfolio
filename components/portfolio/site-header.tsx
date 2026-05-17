@@ -7,8 +7,9 @@ const nav = [
   { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
   { href: "#github", label: "GitHub" },
+  ...(site.mediumUsername ? [{ href: "#writing", label: "Writing" }] : []),
   { href: "#contact", label: "Contact" },
-] as const
+]
 
 export function SiteHeader({ className }: { className?: string }) {
   return (

@@ -7,6 +7,7 @@ import { Hero } from "@/components/portfolio/hero"
 import { Projects } from "@/components/portfolio/projects"
 import { SiteFooter } from "@/components/portfolio/site-footer"
 import { SiteHeader } from "@/components/portfolio/site-header"
+import { Writing, WritingSkeleton } from "@/components/portfolio/writing"
 
 export default function Page() {
   return (
@@ -18,6 +19,9 @@ export default function Page() {
         <Experience />
         <Suspense fallback={<GithubProfileSkeleton />}>
           <GithubProfile />
+        </Suspense>
+        <Suspense fallback={<WritingSkeleton />}>
+          <Writing />
         </Suspense>
         <Contact />
       </main>
