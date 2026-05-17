@@ -19,7 +19,10 @@ export function ContributionGraphScroll({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    el.scrollLeft = el.scrollWidth
+    const raf = requestAnimationFrame(() => {
+      el.scrollLeft = el.scrollWidth
+    })
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   return (

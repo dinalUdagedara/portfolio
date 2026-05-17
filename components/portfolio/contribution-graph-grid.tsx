@@ -18,7 +18,6 @@ const DAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 const VISIBLE_DAYS = ["", "Mon", "", "Wed", "", "Fri", ""]
 const CELL = "h-[11px] w-[11px] rounded-[3px] sm:h-3 sm:w-3"
 const GAP = "gap-[3px] sm:gap-1"
-const WEEK_W = "w-[14px] sm:w-4"
 
 function cellClass(day: GridDay, levels: number[]): string {
   if (day.slot === "padding") return "bg-transparent"
@@ -46,18 +45,16 @@ export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridPr
         )}
       >
         <ContributionGraphScroll>
+          <div className="flex min-w-full justify-center">
           <div className="w-max">
             <div className={cn("mb-1.5 flex", GAP)}>
               <div className="mr-1.5 w-8 shrink-0 sm:mr-2 sm:w-9" />
               {weeks.map((week, i) => (
                 <div
                   key={i}
-                  className={cn(
-                    WEEK_W,
-                    "shrink-0 text-[10px] leading-none text-foreground/55 sm:text-[11px]"
-                  )}
+                  className="w-[11px] shrink-0 overflow-visible whitespace-nowrap text-[10px] leading-none text-foreground/55 sm:w-3 sm:text-[11px]"
                 >
-                  {monthLabelForWeek(week, i) ?? ""}
+                  {monthLabelForWeek(week, i, i > 0 ? weeks[i - 1] : null) ?? ""}
                 </div>
               ))}
             </div>
@@ -118,6 +115,7 @@ export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridPr
                 </div>
               ))}
             </div>
+          </div>
           </div>
         </ContributionGraphScroll>
       </div>

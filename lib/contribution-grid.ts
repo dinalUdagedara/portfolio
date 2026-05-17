@@ -1,5 +1,14 @@
 import type { ContributionCalendar, ContributionDay } from "@/lib/github"
 
+const GRID_LOG_PREFIX = "[github]"
+
+function gridDebug(label: string, payload: Record<string, unknown>) {
+  const enabled =
+    process.env.GITHUB_DEBUG === "true" || process.env.NODE_ENV === "development"
+  if (!enabled) return
+  console.log(`${GRID_LOG_PREFIX} ${label}`, payload)
+}
+
 export type GridDay = {
   date: string
   contributionCount: number
@@ -46,9 +55,8 @@ export function normalizeContributionWeeks(
   if (!allDates.length) return []
 
   const rangeStart = allDates[0]
-  const rangeEnd = allDates[allDates.length - 1]
 
-  return weeks.map((week) => {
+  const grid = weeks.map((week) => {
     const days = week.contributionDays
     if (!days.length) {
       return Array.from({ length: 7 }, () => ({
@@ -68,18 +76,40 @@ export function normalizeContributionWeeks(
       const date = apiDay?.date ?? formatUtcDate(cell)
       const contributionCount = apiDay?.contributionCount ?? 0
 
-      if (date < rangeStart || date > rangeEnd) {
-        return { date, contributionCount: 0, slot: "padding" }
+      if (date < rangeStart) {
+        return { date, contributionCount: 0, slot: "padding" as const }
       }
       if (date > today) {
-        return { date, contributionCount: 0, slot: "future" }
+        return { date, contributionCount: 0, slot: "future" as const }
       }
-      return { date, contributionCount, slot: "day" }
+      return { date, contributionCount, slot: "day" as const }
     })
   })
+
+  gridDebug("normalizeContributionWeeks:range", {
+    today,
+    rangeStart,
+    gridFirstDate: grid.flat().find((d) => d.slot !== "padding")?.date ?? null,
+    gridLastDate:
+      [...grid.flat()].reverse().find((d) => d.slot !== "padding")?.date ?? null,
+  })
+
+  gridDebug("normalizeContributionWeeks:today", {
+    today,
+    weekIndex:
+      grid.findIndex((week) => week.some((d) => d.date === today)),
+  })
+
+  gridDebug("normalizeContributionWeeks:api-vs-grid-last-week", {
+    apiDates: weeks.at(-1)?.contributionDays.map((d) => d.date) ?? [],
+    gridDates: grid.at(-1)?.map((d) => d.date) ?? [],
+    gridSlots: grid.at(-1)?.map((d) => d.slot) ?? [],
+  })
+
+  return grid
 }
 
-/** Hover label matching github.com, e.g. "12 contributions on Friday, May 16, 2026." */
+/** Hover label e.g. "12 contributions on Friday, May 16, 2026." */
 export function contributionDayLabel(day: GridDay): string {
   if (day.slot === "padding" || !day.date) return ""
 
@@ -103,10 +133,20 @@ export function contributionDayLabel(day: GridDay): string {
   return `${n} ${unit} on ${weekday}, ${datePart}.`
 }
 
-/** Label weeks that contain the 1st of a month (same rule as github.com). */
-export function monthLabelForWeek(week: GridDay[], weekIndex: number): string | null {
-  for (const day of week) {
-    if (day.slot === "padding" || !day.date) continue
+/**
+ * Return a month label for a week column using a single rule:
+ * label the column that contains the 1st day of a month.
+ * For the first column only, always show a label.
+ */
+export function monthLabelForWeek(
+  week: GridDay[],
+  weekIndex: number,
+  _prevWeek: GridDay[] | null
+): string | null {
+  const realDays = week.filter((d) => d.slot !== "padding" && d.date)
+  if (!realDays.length) return null
+
+  for (const day of realDays) {
     if (parseUtcDate(day.date).getUTCDate() === 1) {
       return parseUtcDate(day.date).toLocaleDateString("en-US", {
         month: "short",
@@ -116,13 +156,10 @@ export function monthLabelForWeek(week: GridDay[], weekIndex: number): string | 
   }
 
   if (weekIndex === 0) {
-    const first = week.find((d) => d.date && d.slot !== "padding")
-    if (first) {
-      return parseUtcDate(first.date).toLocaleDateString("en-US", {
-        month: "short",
-        timeZone: "UTC",
-      })
-    }
+    return parseUtcDate(realDays[0].date).toLocaleDateString("en-US", {
+      month: "short",
+      timeZone: "UTC",
+    })
   }
 
   return null

@@ -225,19 +225,82 @@ export async function fetchContributions(username: string): Promise<Contribution
     return null
   }
 
+  const weekCount = calendar.weeks?.length ?? 0
+  const dayCount = (calendar.weeks ?? []).reduce(
+    (n, w) => n + w.contributionDays.length,
+    0
+  )
+
   githubDebug("fetchContributions:ok", {
     login,
     viewerLogin,
     totalContributions: calendar.totalContributions,
     publicTotal,
-    weekCount: calendar.weeks?.length ?? 0,
-    dayCount: (calendar.weeks ?? []).reduce(
-      (n, w) => n + w.contributionDays.length,
-      0
-    ),
+    weekCount,
+    dayCount,
   })
 
+  logContributionCalendarApi(calendar)
+
   return calendar
+}
+
+function logContributionCalendarApi(calendar: ContributionCalendar) {
+  const weeks = calendar.weeks ?? []
+  const allDays = weeks.flatMap((week, weekIndex) =>
+    week.contributionDays.map((day) => ({ weekIndex, ...day }))
+  )
+  const dates = allDays.map((d) => d.date).sort()
+  const serverNow = new Date().toISOString()
+
+  githubDebug("fetchContributions:api-range", {
+    serverNow,
+    firstDate: dates[0] ?? null,
+    lastDate: dates.at(-1) ?? null,
+    totalWeeks: weeks.length,
+    totalDays: allDays.length,
+  })
+
+  const summarizeWeek = (weekIndex: number) => {
+    const days = weeks[weekIndex]?.contributionDays ?? []
+    return {
+      weekIndex,
+      dayCount: days.length,
+      dates: days.map((d) => d.date),
+      weekdays: days.map((d) => d.weekday),
+      counts: days.map((d) => d.contributionCount),
+    }
+  }
+
+  githubDebug("fetchContributions:api-first-weeks", {
+    weeks: [0, 1, 2].filter((i) => i < weeks.length).map(summarizeWeek),
+  })
+
+  githubDebug("fetchContributions:api-last-weeks", {
+    weeks: [weeks.length - 3, weeks.length - 2, weeks.length - 1]
+      .filter((i) => i >= 0)
+      .map(summarizeWeek),
+  })
+
+  const lastWeek = weeks[weeks.length - 1]
+  if (lastWeek) {
+    githubDebug("fetchContributions:api-last-week-detail", {
+      days: lastWeek.contributionDays.map((d) => ({
+        date: d.date,
+        weekday: d.weekday,
+        weekdayName: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][d.weekday],
+        contributionCount: d.contributionCount,
+      })),
+    })
+  }
+
+  const daysWithActivity = allDays
+    .filter((d) => d.contributionCount > 0)
+    .map((d) => d.date)
+  githubDebug("fetchContributions:api-last-activity", {
+    lastDateWithContributions: daysWithActivity.at(-1) ?? null,
+    lastFiveActiveDates: daysWithActivity.slice(-5),
+  })
 }
 
 export function normalizeBlogUrl(blog: string | null): string | null {
