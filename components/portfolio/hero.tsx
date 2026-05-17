@@ -85,10 +85,10 @@ export function Hero() {
             >
               {site.name}
             </h1>
-            <p className="mt-3 max-w-xl text-pretty text-base font-medium leading-snug tracking-tight text-foreground/90 sm:mt-4 sm:text-lg">
+            <p className="mt-3 max-w-xl text-pretty font-sans text-base font-medium leading-snug tracking-tight text-foreground sm:mt-4 sm:text-lg">
               {site.hook}
             </p>
-            <p className="mt-2 max-w-lg text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-2 max-w-xl text-pretty font-sans text-sm leading-relaxed text-foreground/75 sm:text-base">
               {site.bio}
             </p>
             <div className="mt-8 flex w-full max-w-xl touch-manipulation flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
