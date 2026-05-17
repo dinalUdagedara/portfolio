@@ -98,7 +98,7 @@ export async function GithubProfile() {
       <SectionTitle
         kicker="GitHub"
         title="Profile"
-        description="Pulled from the public GitHub API; refreshes about once an hour."
+        description="Profile, stats, and contribution activity from GitHub."
       />
 
       <div className="portfolio-fade-up mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
