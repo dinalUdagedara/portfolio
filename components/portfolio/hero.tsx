@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { fontSignature } from "@/lib/fonts"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
@@ -74,21 +75,28 @@ export function Hero() {
             <p className="font-mono text-[10px] font-medium uppercase leading-relaxed tracking-[0.18em] text-primary/90 sm:text-[11px] sm:tracking-[0.22em]">
               {site.role}
             </p>
-            <p className="mt-3 max-w-xl text-pretty text-base font-medium leading-snug tracking-tight text-foreground sm:mt-4 sm:text-lg md:text-xl">
-              {site.hook}
-            </p>
-            <h1 className="mt-4 text-pretty text-3xl font-semibold tracking-[-0.02em] sm:mt-5 sm:text-4xl lg:text-5xl lg:leading-[1.06]">
+            <h1
+              className={cn(
+                fontSignature.className,
+                "mt-3 max-w-xl text-[3rem] font-normal leading-[1.05]",
+                "text-foreground sm:mt-4 sm:text-[3.5rem] lg:text-[4rem]"
+              )}
+              style={fontSignature.style}
+            >
               {site.name}
             </h1>
-            <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base md:text-lg">
-              {site.tagline}
+            <p className="mt-3 max-w-xl text-pretty font-sans text-base font-medium leading-snug tracking-tight text-foreground sm:mt-4 sm:text-lg">
+              {site.hook}
+            </p>
+            <p className="mt-2 max-w-xl text-pretty font-sans text-sm leading-relaxed text-foreground/75 sm:text-base">
+              {site.bio}
             </p>
             <div className="mt-8 flex w-full max-w-xl touch-manipulation flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
               <Button asChild size="lg" className="h-11 w-full min-h-11 sm:h-10 sm:w-auto sm:min-h-10">
                 <Link href="#work">View work</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-11 w-full min-h-11 sm:h-10 sm:w-auto sm:min-h-10">
-                <Link href={`mailto:${site.email}`}>Email me</Link>
+                <Link href="#contact">Get in touch</Link>
               </Button>
             </div>
           </div>

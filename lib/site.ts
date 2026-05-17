@@ -2,9 +2,12 @@ export const site = {
   name: "Dinal Udagedara",
   role: "Software engineer",
   /** One scannable line: outcome or niche (shown above the name in the hero). */
-  hook: "I ship web products that stay fast, accessible, and easy to evolve.",
+  hook: "TypeScript, Next.js, and full-stack products that ship.",
+  /** Short line for metadata (manifest, Open Graph, JSON-LD). */
   tagline:
-    "I build reliable web products with clear UX, solid TypeScript, and performance in mind.",
+    "Junior Software Engineer at Perfectus · Freelance full-stack developer.",
+  /** Hero bio beside portrait — keep to 1–2 short sentences. */
+  bio: "Junior Software Engineer at Perfectus, building web apps end to end. I also freelance on production products from UI and APIs to deploy.",
   email: "dinal.bandara@gmail.com",
   contactIntro:
     "I am always open to new opportunities and collaborations. If you have any questions or would like to get in touch, please feel free to contact me.",
