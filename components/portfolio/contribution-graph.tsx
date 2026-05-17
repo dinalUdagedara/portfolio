@@ -42,11 +42,16 @@ export function ContributionGraphSkeleton({ embedded }: { embedded?: boolean }) 
         !embedded && "mt-6 animate-pulse rounded-2xl border border-border bg-card"
       )}
     >
-      <div className="mb-5 space-y-2">
-        <div className="h-3 w-24 rounded bg-muted" />
-        <div className="h-8 w-36 rounded bg-muted" />
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+        <div className="shrink-0 space-y-2">
+          <div className="h-3 w-16 rounded bg-muted" />
+          <div className="h-8 w-28 rounded bg-muted" />
+          <div className="h-3 w-24 rounded bg-muted" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="h-[100px] w-full rounded-lg bg-muted/60" />
+        </div>
       </div>
-      <div className="h-[100px] w-full rounded-lg bg-muted/60" />
     </div>
   )
 }
@@ -75,8 +80,9 @@ export function ContributionGraph({
       )}
       aria-label="GitHub contribution activity"
     >
-      <div className="mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
-        <div>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+        {/* left: stats */}
+        <div className="shrink-0">
           <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
             Activity
           </p>
@@ -85,41 +91,44 @@ export function ContributionGraph({
               {totalContributions.toLocaleString()}
             </span>
             <span className="text-sm text-muted-foreground">
-              contributions in the last year
+              contributions
+              <br className="hidden sm:block" /> in the last year
             </span>
           </p>
+          {profileUrl ? (
+            <Link
+              href={profileUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 block text-sm text-primary hover:underline"
+            >
+              View on GitHub →
+            </Link>
+          ) : null}
         </div>
-        {profileUrl ? (
-          <Link
-            href={profileUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="shrink-0 text-sm text-primary hover:underline"
-          >
-            View on GitHub →
-          </Link>
-        ) : null}
-      </div>
 
-      <ContributionGraphGrid weeks={weeks} levels={levels} />
-
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground">
-        <p className="max-w-md text-pretty leading-relaxed">
-          Commit, PR, issue, and review activity from the last 12 months.
-        </p>
-        <div className="flex items-center gap-1.5">
-          <span>Less</span>
-          {[0, levels[0], levels[1], levels[2], levels[3]].map((n) => (
-            <div
-              key={n}
-              className={cn(
-                CELL,
-                cellClass({ date: "", contributionCount: n, slot: "day" }, levels)
-              )}
-              aria-hidden
-            />
-          ))}
-          <span>More</span>
+        {/* right: graph + legend */}
+        <div className="min-w-0 flex-1">
+          <ContributionGraphGrid weeks={weeks} levels={levels} />
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted-foreground">
+            <p className="text-pretty leading-relaxed">
+              Commit, PR, issue, and review activity from the last 12 months.
+            </p>
+            <div className="flex items-center gap-1.5">
+              <span>Less</span>
+              {[0, levels[0], levels[1], levels[2], levels[3]].map((n) => (
+                <div
+                  key={n}
+                  className={cn(
+                    CELL,
+                    cellClass({ date: "", contributionCount: n, slot: "day" }, levels)
+                  )}
+                  aria-hidden
+                />
+              ))}
+              <span>More</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
