@@ -49,6 +49,8 @@ export async function fetchGithubUser(username: string): Promise<GithubPublicUse
 export type ContributionDay = {
   date: string
   contributionCount: number
+  /** 0 = Sunday … 6 = Saturday (GitHub GraphQL) */
+  weekday: number
 }
 
 export type ContributionCalendar = {
@@ -79,7 +81,7 @@ const CONTRIBUTIONS_QUERY = `query($login: String!) {
     contributionsCollection {
       contributionCalendar {
         totalContributions
-        weeks { contributionDays { contributionCount date } }
+        weeks { contributionDays { contributionCount date weekday } }
       }
     }
   }

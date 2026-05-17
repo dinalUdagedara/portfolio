@@ -62,7 +62,7 @@ export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridPr
                     "shrink-0 text-[10px] leading-none text-foreground/55 sm:text-[11px]"
                   )}
                 >
-                  {monthLabelForWeek(week, i > 0 ? weeks[i - 1] : null) ?? ""}
+                  {monthLabelForWeek(week, i) ?? ""}
                 </div>
               ))}
             </div>

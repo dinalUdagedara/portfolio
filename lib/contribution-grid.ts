@@ -1,4 +1,4 @@
-import type { ContributionCalendar } from "@/lib/github"
+import type { ContributionCalendar, ContributionDay } from "@/lib/github"
 
 export type GridDay = {
   date: string
@@ -22,7 +22,19 @@ export function todayUtc(): string {
   return formatUtcDate(new Date())
 }
 
-/** Pad each API week to Sun–Sat so columns align like github.com. */
+function dayWeekday(day: ContributionDay): number {
+  if (day.weekday >= 0 && day.weekday <= 6) return day.weekday
+  return parseUtcDate(day.date).getUTCDay()
+}
+
+function weekSundayUtc(days: ContributionDay[]): Date {
+  const ref = days[0]
+  const sunday = parseUtcDate(ref.date)
+  sunday.setUTCDate(sunday.getUTCDate() - dayWeekday(ref))
+  return sunday
+}
+
+/** Place each API day on its GitHub weekday row (Sun=0) so columns match github.com. */
 export function normalizeContributionWeeks(
   weeks: ContributionCalendar["weeks"]
 ): GridDay[][] {
@@ -37,11 +49,8 @@ export function normalizeContributionWeeks(
   const rangeEnd = allDates[allDates.length - 1]
 
   return weeks.map((week) => {
-    const byDate = new Map(
-      week.contributionDays.map((d) => [d.date, d.contributionCount])
-    )
-    const anchor = week.contributionDays[0]?.date
-    if (!anchor) {
+    const days = week.contributionDays
+    if (!days.length) {
       return Array.from({ length: 7 }, () => ({
         date: "",
         contributionCount: 0,
@@ -49,15 +58,15 @@ export function normalizeContributionWeeks(
       }))
     }
 
-    const anchorDate = parseUtcDate(anchor)
-    const sunday = new Date(anchorDate)
-    sunday.setUTCDate(anchorDate.getUTCDate() - anchorDate.getUTCDay())
+    const sunday = weekSundayUtc(days)
+    const byWeekday = new Map(days.map((d) => [dayWeekday(d), d]))
 
     return Array.from({ length: 7 }, (_, dow) => {
+      const apiDay = byWeekday.get(dow)
       const cell = new Date(sunday)
       cell.setUTCDate(sunday.getUTCDate() + dow)
-      const date = formatUtcDate(cell)
-      const contributionCount = byDate.get(date) ?? 0
+      const date = apiDay?.date ?? formatUtcDate(cell)
+      const contributionCount = apiDay?.contributionCount ?? 0
 
       if (date < rangeStart || date > rangeEnd) {
         return { date, contributionCount: 0, slot: "padding" }
@@ -94,19 +103,27 @@ export function contributionDayLabel(day: GridDay): string {
   return `${n} ${unit} on ${weekday}, ${datePart}.`
 }
 
-export function monthLabelForWeek(week: GridDay[], prevWeek: GridDay[] | null): string | null {
-  const sunday = week[0]?.date
-  if (!sunday) return null
-
-  const month = parseUtcDate(sunday).getUTCMonth()
-  const prevSunday = prevWeek?.[0]?.date
-  const prevMonth = prevSunday ? parseUtcDate(prevSunday).getUTCMonth() : null
-
-  if (prevMonth === null || month !== prevMonth) {
-    return parseUtcDate(sunday).toLocaleDateString("en-US", {
-      month: "short",
-      timeZone: "UTC",
-    })
+/** Label weeks that contain the 1st of a month (same rule as github.com). */
+export function monthLabelForWeek(week: GridDay[], weekIndex: number): string | null {
+  for (const day of week) {
+    if (day.slot === "padding" || !day.date) continue
+    if (parseUtcDate(day.date).getUTCDate() === 1) {
+      return parseUtcDate(day.date).toLocaleDateString("en-US", {
+        month: "short",
+        timeZone: "UTC",
+      })
+    }
   }
+
+  if (weekIndex === 0) {
+    const first = week.find((d) => d.date && d.slot !== "padding")
+    if (first) {
+      return parseUtcDate(first.date).toLocaleDateString("en-US", {
+        month: "short",
+        timeZone: "UTC",
+      })
+    }
+  }
+
   return null
 }
