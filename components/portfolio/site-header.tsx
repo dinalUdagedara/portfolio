@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { fontSignature } from "@/lib/fonts"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
@@ -22,10 +23,14 @@ export function SiteHeader({ className }: { className?: string }) {
       <div className="mx-auto flex min-h-14 max-w-6xl items-center justify-between gap-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:gap-3">
         <Link
           href="#top"
-          className="group min-w-0 max-w-[42%] shrink-0 truncate text-sm font-medium tracking-tight text-foreground transition-colors hover:text-primary sm:max-w-none"
+          className={cn(
+            fontSignature.className,
+            "group min-w-0 max-w-[58%] shrink-0 truncate text-[1.65rem] font-normal leading-none",
+            "text-foreground transition-colors hover:text-primary sm:max-w-none sm:text-[1.85rem]"
+          )}
+          style={fontSignature.style}
         >
-          {site.name.split(" ")[0]}
-          <span className="text-muted-foreground transition-colors group-hover:text-primary/75">.dev</span>
+          {site.name}
         </Link>
         <nav className="flex min-w-0 flex-1 justify-end gap-0.5 overflow-x-auto overscroll-x-contain py-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-none sm:gap-1 sm:overflow-visible sm:py-0 [&::-webkit-scrollbar]:hidden">
           {nav.map((item) => (

@@ -5,6 +5,7 @@ import "./globals.css"
 import { GrainOverlay } from "@/components/portfolio/grain-overlay"
 import { PersonJsonLd } from "@/components/seo/json-ld"
 import { ThemeProvider } from "@/components/theme-provider"
+import { fontSignature } from "@/lib/fonts"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
@@ -105,7 +106,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn(
+        "antialiased",
+        "font-sans",
+        inter.variable,
+        fontMono.variable,
+        fontSignature.variable
+      )}
     >
       <body className="min-w-0 overflow-x-clip">
         <PersonJsonLd siteOrigin={siteOrigin} />
