@@ -3,14 +3,14 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { PortfolioSection, SectionTitle } from "@/components/portfolio/section"
-import { fetchMediumPosts } from "@/lib/medium"
+import { fetchMediumPosts, MEDIUM_POST_LIMIT, normalizeMediumHandle } from "@/lib/medium"
 import { site } from "@/lib/site"
 
 function formatDate(pubDate: string): string {
   if (!pubDate) return ""
   const d = new Date(pubDate)
   if (isNaN(d.getTime())) return ""
-  return d.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+  return d.toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })
 }
 
 export function WritingSkeleton() {
@@ -18,7 +18,7 @@ export function WritingSkeleton() {
     <PortfolioSection id="writing" band="muted">
       <SectionTitle kicker="Medium" title="Writing" description="Loading recent articles…" />
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {Array.from({ length: 3 }).map((_, i) => (
+        {Array.from({ length: MEDIUM_POST_LIMIT }).map((_, i) => (
           <li key={i} className="animate-pulse overflow-hidden rounded-2xl border border-border bg-card">
             <div className="aspect-[16/9] w-full bg-muted" />
             <div className="p-5">
@@ -42,7 +42,7 @@ export async function Writing() {
   const username = site.mediumUsername.trim()
   if (!username) return null
 
-  const handle = username.replace(/^@/, "")
+  const handle = normalizeMediumHandle(username)
   const profileHref = `https://medium.com/@${handle}`
   const posts = await fetchMediumPosts(username)
 
@@ -81,7 +81,7 @@ export async function Writing() {
                     <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-muted">
                       <Image
                         src={post.thumbnail}
-                        alt=""
+                        alt={post.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
@@ -89,27 +89,27 @@ export async function Writing() {
                     </div>
                   )}
                   <div className="flex flex-1 flex-col p-5">
-                  <h3 className="flex-1 text-sm font-semibold leading-snug tracking-tight transition-colors group-hover:text-primary">
-                    {post.title}
-                  </h3>
-                  {post.categories.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {post.categories.map((cat) => (
-                        <span
-                          key={cat}
-                          className="rounded-full border border-border/80 bg-background/80 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground"
-                        >
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <div className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
-                    {post.readingTimeMinutes > 0 && (
-                      <span>{post.readingTimeMinutes} min read</span>
+                    <h3 className="flex-1 text-sm font-semibold leading-snug tracking-tight transition-colors group-hover:text-primary">
+                      {post.title}
+                    </h3>
+                    {post.categories.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {post.categories.map((cat) => (
+                          <span
+                            key={cat}
+                            className="rounded-full border border-border/80 bg-background/80 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground"
+                          >
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
                     )}
-                    {post.pubDate && <span>{formatDate(post.pubDate)}</span>}
-                  </div>
+                    <div className="mt-3 flex items-center gap-3 text-xs text-muted-foreground">
+                      {post.readingTimeMinutes > 0 && (
+                        <span>{post.readingTimeMinutes} min read</span>
+                      )}
+                      {post.pubDate && <span>{formatDate(post.pubDate)}</span>}
+                    </div>
                   </div>
                 </Link>
               </li>

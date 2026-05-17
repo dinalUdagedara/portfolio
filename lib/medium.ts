@@ -1,3 +1,5 @@
+export const MEDIUM_POST_LIMIT = 4
+
 export type MediumPost = {
   title: string
   link: string
@@ -5,6 +7,11 @@ export type MediumPost = {
   categories: string[]
   readingTimeMinutes: number
   thumbnail: string | null
+}
+
+/** Strips a leading @ and trims whitespace. Safe to call on already-normalized handles. */
+export function normalizeMediumHandle(username: string): string {
+  return username.replace(/^@/, "").trim()
 }
 
 function between(str: string, open: string, close: string): string | null {
@@ -34,12 +41,14 @@ function stripCdata(s: string): string {
 }
 
 function extractThumbnail(item: string): string | null {
-  // Medium doesn't use <media:thumbnail>. The cover image is placed as the
-  // last <figure> in <content:encoded>, just before the tracking pixel.
-  const content = between(item, "<content:encoded>", "</content:encoded>") ?? ""
+  // Medium places the cover as the last <figure> in content:encoded (before the tracking pixel).
+  // Strip CDATA before searching so the search string is pure HTML.
+  const raw = between(item, "<content:encoded>", "</content:encoded>") ?? ""
+  const content = stripCdata(raw)
   const figures = allBetween(content, "<figure>", "</figure>")
   for (let i = figures.length - 1; i >= 0; i--) {
-    const m = figures[i].match(/src="(https:\/\/cdn-images[^"]+)"/)
+    // Only match the allowlisted CDN hostname to avoid next/image errors.
+    const m = figures[i].match(/src="(https:\/\/cdn-images-1\.medium\.com[^"]+)"/)
     if (m?.[1]) return m[1]
   }
   return null
@@ -50,12 +59,19 @@ function estimateReadingTime(html: string): number {
   return Math.max(1, Math.round(words / 200))
 }
 
-export async function fetchMediumPosts(username: string, limit = 4): Promise<MediumPost[]> {
-  const handle = username.replace(/^@/, "").trim()
+export async function fetchMediumPosts(
+  username: string,
+  limit = MEDIUM_POST_LIMIT
+): Promise<MediumPost[]> {
+  const handle = normalizeMediumHandle(username)
   if (!handle) return []
 
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 5000)
+
   try {
-    const res = await fetch(`https://medium.com/feed/@${encodeURIComponent(handle)}`, {
+    const res = await fetch(`https://medium.com/feed/@${handle}`, {
+      signal: controller.signal,
       headers: { "User-Agent": "dinal-udagedara-portfolio" },
       next: { revalidate: 3600 },
     })
@@ -66,11 +82,11 @@ export async function fetchMediumPosts(username: string, limit = 4): Promise<Med
       .slice(0, limit)
       .map((item) => {
         const title = stripCdata(between(item, "<title>", "</title>") ?? "Untitled")
-        // Medium puts the canonical URL in <link> or as <guid isPermaLink="true">
+        // Medium emits a proper <link>...</link> with the canonical slug URL.
+        // Fall back to <guid> (any attribute variant) if somehow absent.
         const link =
           between(item, "<link>", "</link>") ??
-          between(item, '<guid isPermaLink="true">', "</guid>") ??
-          between(item, "<guid>", "</guid>") ??
+          item.match(/<guid[^>]*>(https:\/\/[^<]+)<\/guid>/)?.[1] ??
           "#"
         const pubDate = between(item, "<pubDate>", "</pubDate>") ?? ""
         const categories = allBetween(item, "<category>", "</category>")
@@ -90,5 +106,7 @@ export async function fetchMediumPosts(username: string, limit = 4): Promise<Med
       })
   } catch {
     return []
+  } finally {
+    clearTimeout(timer)
   }
 }
