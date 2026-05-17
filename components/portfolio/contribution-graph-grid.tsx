@@ -1,8 +1,12 @@
 "use client"
 
-import { useState } from "react"
-
 import { ContributionGraphScroll } from "@/components/portfolio/contribution-graph-scroll"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import {
   type GridDay,
   contributionDayLabel,
@@ -33,17 +37,8 @@ type ContributionGraphGridProps = {
 }
 
 export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridProps) {
-  const [hoverLabel, setHoverLabel] = useState("")
-
   return (
-    <div>
-      <p
-        className="mb-3 min-h-5 text-sm font-semibold text-foreground"
-        aria-live="polite"
-      >
-        {hoverLabel || "\u00A0"}
-      </p>
-
+    <TooltipProvider delayDuration={200}>
       <div
         className={cn(
           "relative -mx-1 rounded-xl bg-muted/30 px-1 py-4 dark:bg-muted/15",
@@ -88,9 +83,8 @@ export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridPr
                     const label = contributionDayLabel(day)
                     const interactive = day.slot !== "padding" && Boolean(day.date)
 
-                    return (
+                    const cell = (
                       <button
-                        key={`${wi}-${di}`}
                         type="button"
                         tabIndex={interactive ? 0 : -1}
                         disabled={!interactive}
@@ -102,14 +96,23 @@ export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridPr
                           !interactive && "cursor-default",
                           cellClass(day, levels)
                         )}
-                        onMouseEnter={() => interactive && setHoverLabel(label)}
-                        onMouseLeave={() => interactive && setHoverLabel("")}
-                        onFocus={() => interactive && setHoverLabel(label)}
-                        onBlur={() => interactive && setHoverLabel("")}
                         aria-label={
                           interactive ? `${DAY_LABELS[di]}, ${label}` : undefined
                         }
                       />
+                    )
+
+                    if (!interactive) {
+                      return <div key={`${wi}-${di}`}>{cell}</div>
+                    }
+
+                    return (
+                      <Tooltip key={`${wi}-${di}`}>
+                        <TooltipTrigger asChild>{cell}</TooltipTrigger>
+                        <TooltipContent side="top" sideOffset={6} className="font-medium">
+                          {label}
+                        </TooltipContent>
+                      </Tooltip>
                     )
                   })}
                 </div>
@@ -118,6 +121,6 @@ export function ContributionGraphGrid({ weeks, levels }: ContributionGraphGridPr
           </div>
         </ContributionGraphScroll>
       </div>
-    </div>
+    </TooltipProvider>
   )
 }
