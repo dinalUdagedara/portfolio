@@ -34,12 +34,15 @@ function stripCdata(s: string): string {
 }
 
 function extractThumbnail(item: string): string | null {
-  // <media:thumbnail url="https://..." />
-  const match = item.match(/<media:thumbnail[^>]+url="([^"]+)"/)
-  if (match?.[1]) return match[1]
-  // Fallback: first <img src="..."> in content:encoded
-  const imgMatch = item.match(/<img[^>]+src="([^"]+)"/)
-  return imgMatch?.[1] ?? null
+  // Medium doesn't use <media:thumbnail>. The cover image is placed as the
+  // last <figure> in <content:encoded>, just before the tracking pixel.
+  const content = between(item, "<content:encoded>", "</content:encoded>") ?? ""
+  const figures = allBetween(content, "<figure>", "</figure>")
+  for (let i = figures.length - 1; i >= 0; i--) {
+    const m = figures[i].match(/src="(https:\/\/cdn-images[^"]+)"/)
+    if (m?.[1]) return m[1]
+  }
+  return null
 }
 
 function estimateReadingTime(html: string): number {
