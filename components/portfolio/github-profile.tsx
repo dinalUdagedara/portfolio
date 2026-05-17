@@ -2,8 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { ContributionGraph, ContributionGraphSkeleton } from "@/components/portfolio/contribution-graph"
 import { PortfolioSection, SectionTitle } from "@/components/portfolio/section"
-import { fetchGithubUser, normalizeBlogUrl } from "@/lib/github"
+import { fetchContributions, fetchGithubUser, normalizeBlogUrl } from "@/lib/github"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
@@ -19,6 +20,7 @@ export function GithubProfileSkeleton() {
           <div className="h-4 w-2/3 max-w-sm rounded bg-muted" />
         </div>
       </div>
+      <ContributionGraphSkeleton />
     </PortfolioSection>
   )
 }
@@ -29,7 +31,10 @@ export async function GithubProfile() {
     return null
   }
 
-  const user = await fetchGithubUser(username)
+  const [user, calendar] = await Promise.all([
+    fetchGithubUser(username),
+    fetchContributions(username),
+  ])
   const profileHref = `https://github.com/${username}`
 
   if (!user) {
@@ -142,6 +147,8 @@ export async function GithubProfile() {
           </div>
         </div>
       </div>
+
+      {calendar && <ContributionGraph calendar={calendar} />}
     </PortfolioSection>
   )
 }
