@@ -65,12 +65,23 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    title: "Your role",
-    company: "Company",
-    period: "20XX — Present",
+    title: "Junior Software Engineer",
+    company: "Perfectus",
+    period: "May 2024 — Present",
     highlights: [
-      "Shipped a feature that improved a measurable outcome (replace with your real impact).",
-      "Led or collaborated across design, backend, and infra (tune to your story).",
+      "Progressed from intern to Associate SE to Junior SE within a year while shipping production features across Next.js frontends and NestJS / FastAPI backends.",
+      "Deployed and maintained services on AWS using Docker; managed MongoDB and PostgreSQL databases including schema migrations with Alembic.",
+      "Built AI-powered features — RAG pipelines, prompt engineering, and context management — as part of multiple client-facing AI projects.",
+      "Owned client communication end-to-end: gathering requirements, planning and prioritising features, coordinating QA, and delivering iterative releases.",
+    ],
+  },
+  {
+    title: "Full Stack Engineer",
+    company: "Freelance",
+    period: "2025 — Present",
+    highlights: [
+      "Serving as the primary engineer on a large-scale application, managing the full development lifecycle independently.",
+      "Handling direct client collaboration, feature planning, and deployment with no team overhead.",
     ],
   },
 ]

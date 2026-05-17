@@ -7,7 +7,7 @@ export function Experience() {
       <SectionTitle
         kicker="History"
         title="Experience"
-        description="Keep each bullet crisp: action + scope + outcome."
+        description="Where I've worked and what I've shipped."
       />
       <ol className="relative mt-10 space-y-10 border-l border-border/70 pl-6 sm:mt-12 sm:space-y-12 sm:pl-10">
         {experience.map((item, index) => (
