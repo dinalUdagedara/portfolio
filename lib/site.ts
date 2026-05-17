@@ -6,6 +6,8 @@ export const site = {
   tagline:
     "I build reliable web products with clear UX, solid TypeScript, and performance in mind.",
   email: "dinal.bandara@gmail.com",
+  contactIntro:
+    "I am always open to new opportunities and collaborations. If you have any questions or would like to get in touch, please feel free to contact me.",
   /** Used for the GitHub API section (`lib/github.ts`). Must match your handle. */
   githubUsername: "dinalUdagedara",
   /** Used for the Writing section (`lib/medium.ts`). Without the leading @. */
