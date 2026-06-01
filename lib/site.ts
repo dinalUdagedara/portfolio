@@ -130,7 +130,7 @@ export const projects: Project[] = [
     ],
     tags: ["Next.js", "TypeScript", "Convex", "Clerk", "Tailwind CSS"],
     screenshots: [
-      "/assets/tasker/Screenshot 2026-06-02 at 00.10.01.png",
+      "/assets/projects/tasker/Screenshot 2026-06-02 at 00.10.01.png",
     ],
     featured: false,
   },
@@ -143,10 +143,18 @@ export const projects: Project[] = [
       "Built a Spotify-style music player with real-time synchronized lyrics driven by standard .srt subtitle files, and published the result as the srt-lyric-player npm package. Engineered real-time lyric sync using Howler.js for audio playback, Framer Motion for lyric transition animations, and Web Audio API for a canvas-based audio visualizer. Structured as a Next.js 15 monorepo with the package bundled via tsup (ESM + CJS + TypeScript types) and deployed live on Vercel as an interactive demo.",
     liveUrl: "https://srt-to-lyrics-ebon.vercel.app",
     githubLinks: [
-      { label: "Repo", href: "https://github.com/dinalUdagedara/srt-lyric-player" },
+      { label: "GitHub", href: "https://github.com/dinalUdagedara/srt-to-lyrics" },
+      { label: "npm", href: "https://www.npmjs.com/package/srt-lyric-player" },
     ],
     tags: ["Next.js", "TypeScript", "npm Package", "Howler.js", "Framer Motion"],
-    screenshots: [],
+    screenshots: [
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.10.43.png",
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.22.png",
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.27.png",
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.30.png",
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.33.png",
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.35.png",
+    ],
     featured: false,
   },
 ]
