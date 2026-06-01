@@ -129,7 +129,9 @@ export const projects: Project[] = [
       { label: "Repo", href: "https://github.com/dinalUdagedara/tasker" },
     ],
     tags: ["Next.js", "TypeScript", "Convex", "Clerk", "Tailwind CSS"],
-    screenshots: [],
+    screenshots: [
+      "/assets/tasker/Screenshot 2026-06-02 at 00.10.01.png",
+    ],
     featured: false,
   },
   {
