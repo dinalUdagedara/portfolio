@@ -90,7 +90,14 @@ export const projects: Project[] = [
       { label: "Repo", href: "https://github.com/dinalUdagedara/omi" },
     ],
     tags: ["Next.js", "TypeScript", "Convex", "Tailwind CSS"],
-    screenshots: [],
+    screenshots: [
+      "/assets/projects/omi/Screenshot 2026-06-02 at 00.05.13.png",
+      "/assets/projects/omi/Screenshot 2026-06-02 at 00.05.21.png",
+      "/assets/projects/omi/Screenshot 2026-06-02 at 00.05.40.png",
+      "/assets/projects/omi/Screenshot 2026-06-02 at 00.05.42.png",
+      "/assets/projects/omi/Screenshot 2026-06-02 at 00.06.57.png",
+      "/assets/projects/omi/Screenshot 2026-06-02 at 00.07.03.png",
+    ],
     featured: true,
   },
   {
