@@ -68,7 +68,14 @@ export const projects: Project[] = [
       { label: "Backend", href: "https://github.com/dinalUdagedara/crackint-backend" },
     ],
     tags: ["Next.js", "FastAPI", "PostgreSQL", "Python", "NLP", "AI/LLM"],
-    screenshots: [],
+    screenshots: [
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.01.16.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.01.54.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.06.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.23.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.34.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.03.52.png",
+    ],
     featured: true,
   },
   {
