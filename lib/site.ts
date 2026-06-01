@@ -2,12 +2,12 @@ export const site = {
   name: "Dinal Udagedara",
   role: "Software engineer",
   /** One scannable line: outcome or niche (shown above the name in the hero). */
-  hook: "TypeScript, Next.js, and full-stack products that ship.",
+  hook: "Full-stack engineer shipping AI-powered products and Web3-integrated platforms.",
   /** Short line for metadata (manifest, Open Graph, JSON-LD). */
   tagline:
-    "Junior Software Engineer at Perfectus · Freelance full-stack developer.",
+    "Software Engineer at Perfectus · Full-stack, AI, and Web3 developer.",
   /** Hero bio beside portrait — keep to 1–2 short sentences. */
-  bio: "Junior Software Engineer at Perfectus, building web apps end to end. I also freelance on production products from UI and APIs to deploy.",
+  bio: "Software Engineer at Perfectus building full-stack web apps with AI pipelines and Web3 integration. I also freelance on production products across the full stack.",
   email: "dinal.bandara@gmail.com",
   contactIntro:
     "I am always open to new opportunities and collaborations. If you have any questions or would like to get in touch, please feel free to contact me.",
@@ -70,11 +70,11 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    title: "Junior Software Engineer",
+    title: "Software Engineer",
     company: "Perfectus",
     period: "May 2024 — Present",
     highlights: [
-      "Progressed from intern to Associate SE to Junior SE within a year while shipping production features across Next.js frontends and NestJS / FastAPI backends.",
+      "Progressed from intern to Associate SE to SE within a year while shipping production features across Next.js frontends and NestJS / FastAPI backends.",
       "Deployed and maintained services on AWS using Docker; managed MongoDB and PostgreSQL databases including schema migrations with Alembic.",
       "Built AI-powered features — RAG pipelines, prompt engineering, and context management — as part of multiple client-facing AI projects.",
       "Owned client communication end-to-end: gathering requirements, planning and prioritising features, coordinating QA, and delivering iterative releases.",
