@@ -112,7 +112,9 @@ export const projects: Project[] = [
       { label: "Repo", href: "https://github.com/dinalUdagedara/sri-grow" },
     ],
     tags: ["React", "Node.js", "Flask", "Python", "Machine Learning"],
-    screenshots: [],
+    screenshots: [
+      "/assets/projects/sri-grow/Screenshot 2026-06-02 at 00.07.46.png",
+    ],
     featured: false,
   },
   {
