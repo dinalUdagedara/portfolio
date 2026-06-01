@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 
 const nav = [
   { href: "#work", label: "Work" },
+  { href: "/projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#github", label: "GitHub" },
   ...(site.mediumUsername ? [{ href: "#writing", label: "Writing" }] : []),
@@ -24,7 +25,7 @@ export function SiteHeader({ className }: { className?: string }) {
     >
       <div className="mx-auto flex min-h-14 max-w-6xl items-center justify-between gap-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:gap-3">
         <Link
-          href="#top"
+          href="/"
           aria-label={site.name}
           className={cn(
             fontSignature.className,
