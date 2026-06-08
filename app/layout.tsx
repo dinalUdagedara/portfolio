@@ -50,6 +50,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "Nw90R99utX5FXyhBp2M37Q-0EdIi0C6AiMpbjnuBR1Q",
+  },
   formatDetection: {
     email: false,
     address: false,
