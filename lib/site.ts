@@ -161,6 +161,27 @@ export const projects: Project[] = [
   },
 ]
 
+export type SkillGroup = {
+  category: string
+  items: string[]
+}
+
+export const skills: SkillGroup[] = [
+  { category: "Languages", items: ["TypeScript", "JavaScript", "Python", "Kotlin", "Java"] },
+  { category: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "HTML", "CSS"] },
+  { category: "Backend", items: ["Node.js", "Express.js", "NestJS", "FastAPI"] },
+  { category: "Database", items: ["PostgreSQL", "MongoDB", "SQL"] },
+  {
+    category: "Web3 / Blockchain",
+    items: ["Smart Contract Integration", "Web3.js", "Ethers.js"],
+  },
+  {
+    category: "AI / LLM",
+    items: ["RAG Systems", "Prompt Engineering", "AI Agent Design", "LangChain", "OpenAI", "Gemini"],
+  },
+  { category: "Cloud & DevOps", items: ["AWS", "Docker", "Git", "GitHub"] },
+]
+
 export type EducationItem = {
   degree: string
   programme: string

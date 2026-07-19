@@ -5,6 +5,7 @@ import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const nav = [
+  { href: "#skills", label: "Skills" },
   { href: "#work", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
