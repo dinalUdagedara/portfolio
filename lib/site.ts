@@ -211,21 +211,33 @@ export const experience: ExperienceItem[] = [
   {
     title: "Software Engineer",
     company: "Perfectus",
-    period: "May 2024 — Present",
+    period: "May 2025 — Present",
     highlights: [
-      "Progressed from intern to Associate SE to SE within a year while shipping production features across Next.js frontends and NestJS / FastAPI backends.",
-      "Deployed and maintained services on AWS using Docker; managed MongoDB and PostgreSQL databases including schema migrations with Alembic.",
-      "Built AI-powered features — RAG pipelines, prompt engineering, and context management — as part of multiple client-facing AI projects.",
-      "Owned client communication end-to-end: gathering requirements, planning and prioritising features, coordinating QA, and delivering iterative releases.",
+      "Promoted to Software Engineer after an 11-month internship, shipping production features across Next.js frontends and NestJS / FastAPI backends.",
+      "Integrate smart contracts into web platforms, connecting on-chain logic with Web2 backends and frontends as part of the team's Web3 work.",
+      "Architect RESTful APIs and backend services, and manage MongoDB / PostgreSQL databases with schema migrations via Alembic; deploy and maintain services on AWS with Docker.",
+      "Build AI-powered features — RAG pipelines, prompt engineering, and AI agent workflows — while owning client communication, requirements gathering, and iterative delivery.",
     ],
   },
   {
-    title: "Full Stack Engineer",
-    company: "Freelance",
+    title: "Freelance Software Engineer",
+    company: "Independent — US Client (Remote)",
     period: "2025 — Present",
     highlights: [
-      "Serving as the primary engineer on a large-scale application, managing the full development lifecycle independently.",
-      "Handling direct client collaboration, feature planning, and deployment with no team overhead.",
+      "Serving as the primary software engineer for a US-based AI music generation and streaming platform, from backend APIs to frontend UI.",
+      "Leading end-to-end feature development independently — architecting solutions and defining technical requirements directly with the client.",
+      "Building and integrating AI-powered music generation capabilities into a scalable streaming platform.",
+    ],
+  },
+  {
+    title: "Software Engineering Intern",
+    company: "Perfectus",
+    period: "May 2024 — April 2025 (11 months)",
+    highlights: [
+      "Completed an 11-month industrial placement as part of the BEng (Hons) Software Engineering programme at IIT.",
+      "Contributed to full-stack development across multiple client projects, gaining hands-on production experience.",
+      "Worked on Web3-enabled web applications, integrating smart contracts on both frontend and backend.",
+      "Collaborated with senior engineers to deliver features, fix bugs, and improve code quality across the codebase.",
     ],
   },
 ]
