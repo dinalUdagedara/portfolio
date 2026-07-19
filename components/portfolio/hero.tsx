@@ -98,6 +98,11 @@ export function Hero() {
               <Button asChild size="lg" variant="outline" className="h-11 w-full min-h-11 sm:h-10 sm:w-auto sm:min-h-10">
                 <Link href="#contact">Get in touch</Link>
               </Button>
+              <Button asChild size="lg" variant="ghost" className="h-11 w-full min-h-11 sm:h-10 sm:w-auto sm:min-h-10">
+                <Link href={site.resumeUrl} target="_blank" rel="noreferrer">
+                  Resume ↗
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
