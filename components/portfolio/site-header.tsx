@@ -8,6 +8,7 @@ const nav = [
   { href: "#work", label: "Work" },
   { href: "/projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
   { href: "#github", label: "GitHub" },
   ...(site.mediumUsername ? [{ href: "#writing", label: "Writing" }] : []),
   { href: "#contact", label: "Contact" },

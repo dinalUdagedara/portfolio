@@ -159,6 +159,24 @@ export const projects: Project[] = [
   },
 ]
 
+export type EducationItem = {
+  degree: string
+  programme: string
+  institution: string
+  honours?: string
+  period: string
+}
+
+export const education: EducationItem[] = [
+  {
+    degree: "Bachelor of Engineering",
+    programme: "Software Engineering with Industrial Placement",
+    institution: "University of Westminster",
+    honours: "First Class Honours",
+    period: "Graduated June 2026",
+  },
+]
+
 export type ExperienceItem = {
   title: string
   company: string
