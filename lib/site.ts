@@ -22,6 +22,8 @@ export const site = {
   },
   /** Static file under `public/assets/images/`. */
   portraitImage: "/assets/images/portrait.jpeg",
+  /** Static file under `public/assets/`. */
+  resumeUrl: "/assets/Dinal_Udagedara.pdf",
   /** Optional X/Twitter handle for `twitter.creator` (with or without leading @). */
   twitterHandle: "",
   /** Used for `<meta name="keywords">` and similar. */
