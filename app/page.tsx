@@ -8,6 +8,7 @@ import { Hero } from "@/components/portfolio/hero"
 import { Projects } from "@/components/portfolio/projects"
 import { SiteFooter } from "@/components/portfolio/site-footer"
 import { SiteHeader } from "@/components/portfolio/site-header"
+import { Skills } from "@/components/portfolio/skills"
 import { Writing, WritingSkeleton } from "@/components/portfolio/writing"
 
 export default function Page() {
@@ -16,6 +17,7 @@ export default function Page() {
       <SiteHeader />
       <main>
         <Hero />
+        <Skills />
         <Projects />
         <Experience />
         <Education />
