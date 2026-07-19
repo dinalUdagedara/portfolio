@@ -140,8 +140,7 @@ export function contributionDayLabel(day: GridDay): string {
  */
 export function monthLabelForWeek(
   week: GridDay[],
-  weekIndex: number,
-  _prevWeek: GridDay[] | null
+  weekIndex: number
 ): string | null {
   const realDays = week.filter((d) => d.slot !== "padding" && d.date)
   if (!realDays.length) return null

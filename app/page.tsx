@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 
 import { Contact } from "@/components/portfolio/contact"
+import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { GithubProfile, GithubProfileSkeleton } from "@/components/portfolio/github-profile"
 import { Hero } from "@/components/portfolio/hero"
@@ -17,6 +18,7 @@ export default function Page() {
         <Hero />
         <Projects />
         <Experience />
+        <Education />
         <Suspense fallback={<GithubProfileSkeleton />}>
           <GithubProfile />
         </Suspense>
