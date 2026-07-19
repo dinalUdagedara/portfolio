@@ -1,3 +1,5 @@
+import { unstable_cache } from "next/cache"
+
 const GITHUB_LOG_PREFIX = "[github]"
 
 function githubDebug(label: string, payload: Record<string, unknown>) {
@@ -92,7 +94,27 @@ const CONTRIBUTIONS_QUERY = `query($login: String!) {
   }
 }`
 
-export async function fetchContributions(username: string): Promise<ContributionCalendar | null> {
+/**
+ * GitHub's GraphQL resolver for `contributionsCollection` is expensive and
+ * intermittently fails with RESOURCE_LIMITS_EXCEEDED even well within rate
+ * limits — retrying the same request a few requests later routinely
+ * succeeds. Retry here (build/revalidation time only, not per page view) so
+ * a transient failure doesn't get cached for the full revalidate window.
+ */
+const MAX_ATTEMPTS = 4
+const RETRY_DELAY_MS = 400
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+export const fetchContributions = unstable_cache(
+  fetchContributionsWithRetry,
+  ["github-contributions"],
+  { revalidate: 3600 }
+)
+
+async function fetchContributionsWithRetry(username: string): Promise<ContributionCalendar | null> {
   const login = username.trim()
   const token = process.env.GITHUB_TOKEN
 
@@ -116,6 +138,21 @@ export async function fetchContributions(username: string): Promise<Contribution
     return null
   }
 
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const calendar = await fetchContributionsOnce(login, token, attempt)
+    if (calendar) return calendar
+    if (attempt < MAX_ATTEMPTS) await sleep(RETRY_DELAY_MS * attempt)
+  }
+
+  githubDebug("fetchContributions:exhausted", { login, attempts: MAX_ATTEMPTS })
+  return null
+}
+
+async function fetchContributionsOnce(
+  login: string,
+  token: string,
+  attempt: number
+): Promise<ContributionCalendar | null> {
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
@@ -127,7 +164,7 @@ export async function fetchContributions(username: string): Promise<Contribution
       query: CONTRIBUTIONS_QUERY,
       variables: { login },
     }),
-    next: { revalidate: 3600 },
+    cache: "no-store",
   })
 
   const bodyText = await res.text()
@@ -138,6 +175,7 @@ export async function fetchContributions(username: string): Promise<Contribution
   } catch {
     githubDebug("fetchContributions:parse-error", {
       login,
+      attempt,
       status: res.status,
       statusText: res.statusText,
       bodyPreview: bodyText.slice(0, 200),
@@ -148,6 +186,7 @@ export async function fetchContributions(username: string): Promise<Contribution
   if (!res.ok) {
     githubDebug("fetchContributions:http-error", {
       login,
+      attempt,
       status: res.status,
       statusText: res.statusText,
       errors: json.errors?.map((e) => e.message),
@@ -159,6 +198,7 @@ export async function fetchContributions(username: string): Promise<Contribution
   if (json.errors?.length) {
     githubDebug("fetchContributions:graphql-errors", {
       login,
+      attempt,
       status: res.status,
       errors: json.errors.map((e) => ({
         message: e.message,
@@ -178,6 +218,7 @@ export async function fetchContributions(username: string): Promise<Contribution
   if (!viewer) {
     githubDebug("fetchContributions:no-viewer", {
       login,
+      attempt,
       hint: "Token could not authenticate — check GITHUB_TOKEN is valid",
     })
     return null
@@ -233,6 +274,7 @@ export async function fetchContributions(username: string): Promise<Contribution
 
   githubDebug("fetchContributions:ok", {
     login,
+    attempt,
     viewerLogin,
     totalContributions: calendar.totalContributions,
     publicTotal,
