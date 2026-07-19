@@ -7,7 +7,7 @@ import { ArrowLeft, ExternalLink, GitBranch } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteFooter } from "@/components/portfolio/site-footer"
 import { SiteHeader } from "@/components/portfolio/site-header"
-import { projects, site } from "@/lib/site"
+import { projects } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 type Props = { params: Promise<{ slug: string }> }
