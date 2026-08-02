@@ -211,7 +211,7 @@ export const experience: ExperienceItem[] = [
   {
     title: "Software Engineer",
     company: "Perfectus",
-    period: "May 2025 — Present",
+    period: "Feb 2025 — Present",
     highlights: [
       "Promoted to Software Engineer after an 11-month internship, shipping production features across Next.js frontends and NestJS / FastAPI backends.",
       "Integrate smart contracts into web platforms, connecting on-chain logic with Web2 backends and frontends as part of the team's Web3 work.",
@@ -232,7 +232,7 @@ export const experience: ExperienceItem[] = [
   {
     title: "Software Engineering Intern",
     company: "Perfectus",
-    period: "May 2024 — April 2025 (11 months)",
+    period: "Mar 2024 — Jan 2025 (11 months)",
     highlights: [
       "Completed an 11-month industrial placement as part of the BEng (Hons) Software Engineering programme at IIT.",
       "Contributed to full-stack development across multiple client projects, gaining hands-on production experience.",
