@@ -126,40 +126,40 @@ export const projects: Project[] = [
     ],
     featured: true,
   },
-  {
-    slug: "sri-grow",
-    title: "Sri Grow",
-    description:
-      "Agricultural advisory web app for rural Sri Lanka with ML-based precipitation forecasting, pest alerts, and market price tracking.",
-    longDescription:
-      "A full-stack agricultural advisory web app targeting rural agricultural officers in Sri Lanka, supporting crop planning, pest alerts, and market price tracking. I trained a Random Forest Regressor on a custom Sri Lanka weather dataset to predict maximum precipitation by city and date range, enabling data-driven crop scheduling. Served the ML model as a Python Flask microservice alongside a Node.js/Express backend and React frontend — a 3-tier architecture with a separate ML inference layer. Features include live weather forecasting, crop-specific soil and weather guidance, real-time pest alerts, and current market prices sourced from structured datasets.",
-    liveUrl: "https://sri-grow.vercel.app",
-    githubLinks: [
-      { label: "Repo", href: "https://github.com/dinalUdagedara/sri-grow" },
-    ],
-    tags: ["React", "Node.js", "Flask", "Python", "Machine Learning"],
-    screenshots: [
-      "/assets/projects/sri-grow/Screenshot 2026-06-02 at 00.07.46.png",
-    ],
-    featured: false,
-  },
-  {
-    slug: "tasker",
-    title: "Tasker",
-    description:
-      "All-in-one productivity and collaboration platform with notes, tasks, project planning, and real-time team sync.",
-    longDescription:
-      "A full-stack productivity platform built with Next.js 14, TypeScript, Tailwind CSS, and Convex for real-time data sync. Features note-taking, task management, project planning, and real-time team collaboration in a single unified workspace. Implements authentication via Clerk and uses shadcn/ui for a polished, accessible component system. Deployed on Vercel with a responsive UI designed for both personal and team workflows.",
-    liveUrl: "https://tasker-ten-omega.vercel.app",
-    githubLinks: [
-      { label: "Repo", href: "https://github.com/dinalUdagedara/tasker" },
-    ],
-    tags: ["Next.js", "TypeScript", "Convex", "Clerk", "Tailwind CSS"],
-    screenshots: [
-      "/assets/projects/tasker/Screenshot 2026-06-02 at 00.10.01.png",
-    ],
-    featured: false,
-  },
+  // {
+  //   slug: "sri-grow",
+  //   title: "Sri Grow",
+  //   description:
+  //     "Agricultural advisory web app for rural Sri Lanka with ML-based precipitation forecasting, pest alerts, and market price tracking.",
+  //   longDescription:
+  //     "A full-stack agricultural advisory web app targeting rural agricultural officers in Sri Lanka, supporting crop planning, pest alerts, and market price tracking. I trained a Random Forest Regressor on a custom Sri Lanka weather dataset to predict maximum precipitation by city and date range, enabling data-driven crop scheduling. Served the ML model as a Python Flask microservice alongside a Node.js/Express backend and React frontend — a 3-tier architecture with a separate ML inference layer. Features include live weather forecasting, crop-specific soil and weather guidance, real-time pest alerts, and current market prices sourced from structured datasets.",
+  //   liveUrl: "https://sri-grow.vercel.app",
+  //   githubLinks: [
+  //     { label: "Repo", href: "https://github.com/dinalUdagedara/sri-grow" },
+  //   ],
+  //   tags: ["React", "Node.js", "Flask", "Python", "Machine Learning"],
+  //   screenshots: [
+  //     "/assets/projects/sri-grow/Screenshot 2026-06-02 at 00.07.46.png",
+  //   ],
+  //   featured: false,
+  // },
+  // {
+  //   slug: "tasker",
+  //   title: "Tasker",
+  //   description:
+  //     "All-in-one productivity and collaboration platform with notes, tasks, project planning, and real-time team sync.",
+  //   longDescription:
+  //     "A full-stack productivity platform built with Next.js 14, TypeScript, Tailwind CSS, and Convex for real-time data sync. Features note-taking, task management, project planning, and real-time team collaboration in a single unified workspace. Implements authentication via Clerk and uses shadcn/ui for a polished, accessible component system. Deployed on Vercel with a responsive UI designed for both personal and team workflows.",
+  //   liveUrl: "https://tasker-ten-omega.vercel.app",
+  //   githubLinks: [
+  //     { label: "Repo", href: "https://github.com/dinalUdagedara/tasker" },
+  //   ],
+  //   tags: ["Next.js", "TypeScript", "Convex", "Clerk", "Tailwind CSS"],
+  //   screenshots: [
+  //     "/assets/projects/tasker/Screenshot 2026-06-02 at 00.10.01.png",
+  //   ],
+  //   featured: false,
+  // },
   {
     slug: "srt-lyric-player",
     title: "srt-lyric-player",
