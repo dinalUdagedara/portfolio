@@ -174,12 +174,13 @@ export const projects: Project[] = [
     ],
     tags: ["Next.js", "TypeScript", "npm Package", "Howler.js", "Framer Motion"],
     screenshots: [
-      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.10.43.png",
-      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.22.png",
-      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.27.png",
-      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.30.png",
+      "/assets/projects/srt-player/Screenshot 2026-08-07 at 23.35.30.png",
+
+      "/assets/projects/srt-player/Screenshot 2026-08-07 at 23.35.47.png",
+      "/assets/projects/srt-player/Screenshot 2026-08-07 at 23.35.24.png",
       "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.33.png",
       "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.35.png",
+      "/assets/projects/srt-player/Screenshot 2026-06-02 at 00.12.22.png",
     ],
     featured: false,
   },
