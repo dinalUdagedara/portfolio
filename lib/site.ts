@@ -58,6 +58,30 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "showdown",
+    title: "Showdown",
+    description:
+      "No-limit Texas Hold'em in the browser — practise against equity-aware bots, or open a room and deal friends in over a link.",
+    longDescription:
+      "Showdown is a full no-limit Texas Hold'em table built with Next.js 16, React 19, TypeScript, and Tailwind CSS, with Redis-backed multiplayer over server-sent events. The poker engine is a pure, deterministic state machine — hand ranking, side pots, blinds that rise, and a turn clock — kept separate from HTTP and storage so multiplayer could land without changing a line of the core rules. Hole cards are redacted per viewer before anything leaves the server, so the browser never receives a card it is not entitled to see. Bots open with a Chen-formula range preflop and switch to Monte Carlo equity from the flop on. Includes a built-in how-to-play guide, public and private rooms for 2–6 seats, bot fill for empty chairs, and rematch into a fresh room when a table finishes.",
+    liveUrl: "https://poker.dinaludagedara.com",
+    githubLinks: [
+      { label: "Repo", href: "https://github.com/dinalUdagedara/poker" },
+    ],
+    tags: ["Next.js", "TypeScript", "Redis", "SSE", "Tailwind CSS"],
+    screenshots: [
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.25.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.36.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.55.14.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.55.29.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.43.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.49.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.54.png",
+      "/assets/projects/poker/Screenshot 2026-08-07 at 15.55.58.png",
+    ],
+    featured: true,
+  },
+  {
     slug: "crackint",
     title: "CrackInt",
     description:
