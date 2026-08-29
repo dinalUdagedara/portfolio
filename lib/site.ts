@@ -58,6 +58,50 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "crackint",
+    title: "CrackInt",
+    description:
+      "AI-driven interview preparation platform with personalised question practice, skill gap analysis, and cover letter generation.",
+    longDescription:
+      "CrackInt is a full-stack AI interview preparation platform built with Next.js and FastAPI, backed by PostgreSQL with modular API routing. I designed and trained a Word2Vec + BiLSTM + CRF NLP pipeline for Named Entity Recognition over résumé and job-posting text, achieving a test micro-F1 of 0.83 on 4,738 annotated résumés and ~0.85 on 6,327 job postings. The platform features an AI tutor chat, targeted interview question practice, skill gap analysis, readiness scoring, and tailored cover letter generation. LLM-enabled features are controlled through configuration flags for reliable deployment flexibility.",
+    liveUrl: "https://crackint.dinaludagedara.com",
+    githubLinks: [
+      { label: "Frontend", href: "https://github.com/dinalUdagedara/crackint-frontend" },
+      { label: "Backend", href: "https://github.com/dinalUdagedara/crackint-backend" },
+    ],
+    tags: ["Next.js", "FastAPI", "PostgreSQL", "Python", "NLP", "AI/LLM"],
+    screenshots: [
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.01.16.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.01.54.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.06.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.23.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.34.png",
+      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.03.52.png",
+    ],
+    featured: true,
+  },
+  {
+    slug: "saptalk",
+    title: "SAPTalk",
+    description:
+      "Ask SAP business data questions in plain English. The model never writes the query — it fills in a validated intent, and deterministic code compiles the OData.",
+    longDescription:
+      "SAPTalk answers plain-English questions about SAP business data, against the S/4HANA Business Partner sandbox. The decision it exists to demonstrate is that the language model never writes a query — it fills in a structured intent, which ordinary TypeScript validates against a field allowlist before compiling to OData. Field names reach the model as JSON Schema enums, so an invented field cannot be emitted; values are escaped by doubling quotes, so an injected clause compiles to an inert string literal rather than syntax. The sandbox speaks OData V2, and every operator was confirmed against the live API rather than taken from documentation. A single registry describes both entities and generates the model's schema, the validator, the compiler and the table, and questions spanning both run as two queries joined on a shared key. The generated query is shown on every answer. Built with NestJS, Next.js 16, Zod and OpenAI structured outputs, with 117 tests that need no API key or network.",
+    liveUrl: "https://saptalk.dinaludagedara.com",
+    githubLinks: [
+      { label: "Repo", href: "https://github.com/dinalUdagedara/SAPTalk" },
+    ],
+    tags: ["NestJS", "Next.js", "TypeScript", "OpenAI", "OData", "SAP", "Zod"],
+    screenshots: [
+      "/assets/projects/saptalk/02-intent-and-odata.png",
+      "/assets/projects/saptalk/03-cross-object-join.png",
+      "/assets/projects/saptalk/04-results.png",
+      "/assets/projects/saptalk/05-address-entity.png",
+      "/assets/projects/saptalk/01-ask.png",
+    ],
+    featured: true,
+  },
+  {
     slug: "showdown",
     title: "Showdown",
     description:
@@ -78,29 +122,6 @@ export const projects: Project[] = [
       "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.49.png",
       "/assets/projects/poker/Screenshot 2026-08-07 at 15.54.54.png",
       "/assets/projects/poker/Screenshot 2026-08-07 at 15.55.58.png",
-    ],
-    featured: true,
-  },
-  {
-    slug: "crackint",
-    title: "CrackInt",
-    description:
-      "AI-driven interview preparation platform with personalised question practice, skill gap analysis, and cover letter generation.",
-    longDescription:
-      "CrackInt is a full-stack AI interview preparation platform built with Next.js and FastAPI, backed by PostgreSQL with modular API routing. I designed and trained a Word2Vec + BiLSTM + CRF NLP pipeline for Named Entity Recognition over résumé and job-posting text, achieving a test micro-F1 of 0.83 on 4,738 annotated résumés and ~0.85 on 6,327 job postings. The platform features an AI tutor chat, targeted interview question practice, skill gap analysis, readiness scoring, and tailored cover letter generation. LLM-enabled features are controlled through configuration flags for reliable deployment flexibility.",
-    liveUrl: "https://crackint.dinaludagedara.com",
-    githubLinks: [
-      { label: "Frontend", href: "https://github.com/dinalUdagedara/crackint-frontend" },
-      { label: "Backend", href: "https://github.com/dinalUdagedara/crackint-backend" },
-    ],
-    tags: ["Next.js", "FastAPI", "PostgreSQL", "Python", "NLP", "AI/LLM"],
-    screenshots: [
-      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.01.16.png",
-      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.01.54.png",
-      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.06.png",
-      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.23.png",
-      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.02.34.png",
-      "/assets/projects/crackint/Screenshot 2026-06-02 at 00.03.52.png",
     ],
     featured: true,
   },
