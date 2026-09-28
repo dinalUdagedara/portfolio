@@ -7,7 +7,7 @@ export const site = {
   tagline:
     "Software Engineer at Perfectus · Full-stack, AI, and Web3 developer.",
   /** Hero bio beside portrait — keep to 1–2 short sentences. */
-  bio: "Software Engineer at Perfectus building full-stack web apps with AI pipelines and Web3 integration. I also freelance on production products across the full stack.",
+  bio: "Software Engineer at Perfectus building full-stack web apps with AI pipelines and Web3 integration.",
   email: "dinal.bandara@gmail.com",
   contactIntro:
     "I am always open to new opportunities and collaborations. If you have any questions or would like to get in touch, please feel free to contact me.",
@@ -263,16 +263,6 @@ export const experience: ExperienceItem[] = [
       "Integrate smart contracts into web platforms, connecting on-chain logic with Web2 backends and frontends as part of the team's Web3 work.",
       "Architect RESTful APIs and backend services, and manage MongoDB / PostgreSQL databases with schema migrations via Alembic; deploy and maintain services on AWS with Docker.",
       "Build AI-powered features — RAG pipelines, prompt engineering, and AI agent workflows — while owning client communication, requirements gathering, and iterative delivery.",
-    ],
-  },
-  {
-    title: "Freelance Software Engineer",
-    company: "Independent — US Client (Remote)",
-    period: "2025 — Present",
-    highlights: [
-      "Serving as the primary software engineer for a US-based AI music generation and streaming platform, from backend APIs to frontend UI.",
-      "Leading end-to-end feature development independently — architecting solutions and defining technical requirements directly with the client.",
-      "Building and integrating AI-powered music generation capabilities into a scalable streaming platform.",
     ],
   },
   {
